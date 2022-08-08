@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import AdminPage from "./pages/AdminPage";
+import { RouterAll } from "./routes";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <RouterAll />
+    </>
+    // <Routes>
+    //   {/* 設置 App 的嵌套 router 需要加 /* 才能進行默認轉跳 */}
+    //   <Route path={"admin/*"} element={<AdminPage />}>
+    //     {/* 列舉 adminRoutes 的所有組件 */}
+    //     {adminRoutes.map((route) => {
+    //       return <Route key={route.path} {...route} />;
+    //     })}
+    //   </Route>
+    //   {/* 列舉 mainRoutes 的所有組件 */}
+    //   {mainRoutes.map((route) => {
+    //     return <Route key={route.path} {...route} />;
+    //   })}
+    //   {/* 默認路徑 */}
+    //   <Route path={"/"} element={<Navigate to="admin" />} />
+    //   <Route path={"admin"} element={<Navigate to={adminRoutes[0].path} />} />
+    //   {/* 轉跳至 404 頁面 */}
+    //   <Route path={"*"} element={<Navigate to="404" />} />
+    // </Routes>
   );
 }
 

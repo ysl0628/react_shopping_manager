@@ -66,6 +66,7 @@ function Edit() {
         );
         setImageId(product.attributes?.image?.data?.id);
       }
+      console.log(serverUrl + product.attributes?.image?.data?.attributes?.url);
     }
   }, [form, id, isSuccess, product]);
 
@@ -120,13 +121,13 @@ function Edit() {
   };
 
   const handleChange = (info) => {
+    console.log("點擊");
     if (info.file.status === "uploading") {
-      console.log(info);
       setLoading(true);
       return;
     }
     if (info.file.status === "done") {
-      console.log(info);
+      console.log(info.file);
       setImageId(info.file.response[0].id);
       getBase64(info.file.originFileObj, (url) => {
         setLoading(false);
@@ -191,7 +192,7 @@ function Edit() {
           <Upload
             name="files"
             listType="picture-card"
-            className="avatar-uploader"
+            // className="avatar-uploader"
             showUploadList={false}
             action={"/api/upload"}
             headers={{

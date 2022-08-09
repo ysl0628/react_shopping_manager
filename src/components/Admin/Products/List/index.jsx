@@ -128,7 +128,6 @@ function List() {
                 console.log("用戶確認刪除");
                 delProduct(record.id);
               }}
-              /* 此處調用 Api 接口進行相關操作 */
             >
               <Button style={{ margin: "0 1rem" }} type="danger" size="small">
                 刪除

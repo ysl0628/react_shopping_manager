@@ -28,8 +28,6 @@ export default function SiderMenu() {
       items = [...items, getItem(child.path, child.icon, child.title)];
     });
   });
-  console.log(items);
-
   // 設置現在點擊的頁面
   useEffect(() => {
     const currentPath = location.pathname.slice(7);

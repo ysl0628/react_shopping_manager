@@ -1,12 +1,17 @@
 import LoginPage from "../pages/LoginPage";
 import PageNotFound from "../pages/PageNotFound";
-import { AreaChartOutlined, ShopOutlined } from "@ant-design/icons";
+import {
+  AreaChartOutlined,
+  ShopOutlined,
+  FileTextOutlined,
+} from "@ant-design/icons";
 import DashboardPage from "../pages/DashboardPage";
 import EditPage from "../pages/EditPage";
 import NoticePage from "../pages/NoticePage";
 import ListPage from "../pages/ListPage";
 import { Navigate, useRoutes } from "react-router-dom";
 import AdminPage from "../pages/AdminPage";
+import Order from "../components/Admin/Order";
 
 export const mainRoutes = [
   {
@@ -54,6 +59,13 @@ export const adminRoutes = [
       {
         path: "notices",
         element: <NoticePage />,
+      },
+      {
+        path: "orders",
+        element: <Order />,
+        isShow: true,
+        title: "訂單管理",
+        icon: <FileTextOutlined />,
       },
       { path: "*", element: <Navigate to="/404" /> },
     ],

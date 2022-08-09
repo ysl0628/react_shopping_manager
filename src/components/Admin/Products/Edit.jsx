@@ -9,7 +9,7 @@ import {
 } from "../../../store/api/productsApi";
 import { serverUrl } from "../../../utlis/config";
 import { useSelector } from "react-redux";
-// import axios from "axios";
+const { TextArea } = Input;
 
 function Edit() {
   const [imageUrl, setImageUrl] = useState("");
@@ -32,32 +32,13 @@ function Edit() {
   const [addProduct] = useAddProductMutation();
   const [updateProduct] = useUpdateProductMutation();
   // 當數據加載成功再將數據庫中的 name 及 price 顯示至 form 的 input 中
-  // const getProductById = async (id) => {
-  //   const res = await axios.get(
-  //     "http://localhost:1337/api/products/" + id + "?populate=*"
-  //   );
-  //   console.log(res.data);
-  //   let product = res.data.data;
-  //   form.setFieldsValue({
-  //     name: product.attributes.name,
-  //     price: product.attributes.price,
-  //   });
-  //   // 使 imageUrl 為 true 並傳入圖片網址及 id，且隱藏 uploadButton
-  //   if (product.attributes?.image?.data?.attributes?.url) {
-  //     setImageUrl(serverUrl + product.attributes?.image?.data?.attributes?.url);
-  //     setImageId(product.attributes?.image?.data?.id);
-  //   }
-  // };
-  // useEffect(() => {
-  //   getProductById(id);
-
-  // }, []);
   useEffect(() => {
     // 點擊新增時因 isSuccess 為 false 所以不會進行此步驟
     if (isSuccess) {
       form.setFieldsValue({
         name: product.attributes.name,
         price: product.attributes.price,
+        description: product.attributes.description,
       });
       // 使 imageUrl 為 true 並傳入圖片網址及 id，且隱藏 uploadButton
       if (product.attributes?.image?.data?.attributes?.url) {
@@ -66,20 +47,18 @@ function Edit() {
         );
         setImageId(product.attributes?.image?.data?.id);
       }
-      console.log(serverUrl + product.attributes?.image?.data?.attributes?.url);
     }
   }, [form, id, isSuccess, product]);
 
   // 表單送出後新增品項到列表中或修改完成品項
   const onFinish = async (values) => {
+    console.log(values);
     if (id) {
       try {
-        // 將修改資訊傳入 localstorage 及 Api 更新方法需傳入一個對象
         const res = await updateProduct({
           id,
           attributes: { ...values, image: imageId },
         });
-        // 如果出現錯誤則拋出錯誤並返回
         if (res.error) throw Error(res.error);
         console.log(values);
         message.success("修改成功");
@@ -92,9 +71,7 @@ function Edit() {
     try {
       let data = { ...values };
       if (imageId) data.image = imageId;
-      // 將新增資訊傳入 localstorage 及 Api
       const res = await addProduct(data);
-      // 如果出現錯誤則拋出錯誤並返回
       if (res.error) throw Error(res.error);
       console.log(values);
       message.success("提交成功");
@@ -121,13 +98,11 @@ function Edit() {
   };
 
   const handleChange = (info) => {
-    console.log("點擊");
     if (info.file.status === "uploading") {
       setLoading(true);
       return;
     }
     if (info.file.status === "done") {
-      console.log(info.file);
       setImageId(info.file.response[0].id);
       getBase64(info.file.originFileObj, (url) => {
         setLoading(false);
@@ -212,6 +187,16 @@ function Edit() {
               uploadButton
             )}
           </Upload>
+        </Form.Item>
+        <Form.Item label="商品描述" name="description">
+          <TextArea
+            showCount
+            maxLength={100}
+            style={{
+              height: 120,
+            }}
+            // onChange={}
+          />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">

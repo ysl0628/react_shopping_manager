@@ -37,6 +37,7 @@ function List() {
       name: product.attributes.name,
       price: product.attributes.price,
       onSale: product.attributes.onSale,
+      special: product.attributes.special,
       image: product.attributes?.image?.data?.attributes?.formats?.small?.url,
     }));
     setDataSource(data);
@@ -144,6 +145,20 @@ function List() {
               }}
             >
               {record.onSale ? "下架" : "上架"}
+            </Button>
+            <Button
+              style={{ margin: "0 1rem" }}
+              size="small"
+              onClick={() => {
+                console.log(record);
+                // 修改上架狀態
+                updateProduct({
+                  id: record.id,
+                  attributes: { special: !record.special },
+                });
+              }}
+            >
+              {record.special ? "非精選" : "精選"}
             </Button>
           </div>
         );

@@ -1,4 +1,3 @@
-import { serverUrl } from "./utlis/config";
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = function (app) {
@@ -7,7 +6,7 @@ module.exports = function (app) {
   app.use(
     createProxyMiddleware("/api/upload", {
       // http://8rwbc7.natappfree.cc  地址只是实例，实际地址为项目为基准
-      target: `${serverUrl}`,
+      target: "http://localhost:1337",
       //跨域时一般设置该值为 true
       changeOrigin: true,
       //重写接口路由

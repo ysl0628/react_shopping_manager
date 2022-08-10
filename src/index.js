@@ -7,11 +7,12 @@ import "antd/dist/antd.css";
 import { Provider } from "react-redux";
 import store from "./store";
 import App from "./App";
+// import { PUBLIC_URL } from "./utlis/config";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <App />
     </Router>
   </Provider>

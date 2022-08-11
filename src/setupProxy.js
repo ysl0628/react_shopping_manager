@@ -6,7 +6,7 @@ module.exports = function (app) {
   app.use(
     createProxyMiddleware("/api/upload", {
       // http://8rwbc7.natappfree.cc  地址只是实例，实际地址为项目为基准
-      target: "http://52.192.103.131",
+      target: "http://localhost:1337",
       //跨域时一般设置该值为 true
       changeOrigin: true,
       //重写接口路由

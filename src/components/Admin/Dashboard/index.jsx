@@ -3,7 +3,6 @@ import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import { Card, Col, Row, Statistic } from "antd";
 
 function Dashboard() {
-  console.log(process.env.NODE_ENV);
   return (
     <Card title="數據分析">
       <div className="site-statistic-demo-card">

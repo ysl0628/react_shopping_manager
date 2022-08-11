@@ -42,14 +42,14 @@ export default function Order() {
     const orderData = orders.map((order) => ({
       key: "_" + order.id,
       orderId: order.id,
-      username: order?.attributes.user.data?.attributes.username,
-      email: order?.attributes.email,
-      status: order?.attributes.status ? "已付款" : "尚未付款",
-      createdAt: order?.attributes.createdAt.slice(0, 10),
-      address: order?.attributes.address,
-      phone: order?.attributes.phone,
-      totalPrice: order?.attributes.total_price,
-      products: order?.attributes.products,
+      username: order.attributes.user.data.attributes.username,
+      email: order.attributes.email,
+      status: order.attributes.status ? "已付款" : "尚未付款",
+      createdAt: order.attributes.createdAt.slice(0, 10),
+      address: order.attributes.address,
+      phone: order.attributes.phone,
+      totalPrice: order.attributes.total_price,
+      products: order.attributes.products,
     }));
     setData(orderData);
   }, [isSuccess, orders]);
@@ -109,11 +109,11 @@ export default function Order() {
     record.products.data.forEach((product, index) => {
       data.push({
         key: "__" + index + 1,
-        title: product?.attributes.title,
-        amount: product?.attributes.amount + " 個",
-        price: product?.attributes.price + " 元",
+        title: product.attributes.title,
+        amount: product.attributes.amount + " 個",
+        price: product.attributes.price + " 元",
         productTotalPrice:
-          product?.attributes.amount * product?.attributes.price + " 元",
+          product.attributes.amount * product.attributes.price + " 元",
       });
     });
 

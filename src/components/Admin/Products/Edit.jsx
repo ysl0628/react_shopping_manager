@@ -174,6 +174,7 @@ function Edit() {
               Authorization: `Bearer ${token}`,
             }}
             onChange={(info) => handleChange(info)}
+            onClick={() => console.log(token)}
           >
             {imageUrl ? (
               <img

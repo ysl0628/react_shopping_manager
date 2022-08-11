@@ -7,12 +7,16 @@ import "antd/dist/antd.css";
 import { Provider } from "react-redux";
 import store from "./store";
 import App from "./App";
-// import { PUBLIC_URL } from "./utlis/config";
+
+let base_name = "";
+process.env.NODE_ENV === "development"
+  ? (base_name = "/")
+  : (base_name = "/react_shopping_manager");
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <Router basename="/react_shopping_manager">
+    <Router basename={base_name}>
       <App />
     </Router>
   </Provider>

@@ -8,15 +8,10 @@ import { Provider } from "react-redux";
 import store from "./store";
 import App from "./App";
 
-let base_name = "";
-process.env.NODE_ENV === "development"
-  ? (base_name = "/")
-  : (base_name = "/react_shopping_manager");
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <Router basename={base_name}>
+    <Router>
       <App />
     </Router>
   </Provider>

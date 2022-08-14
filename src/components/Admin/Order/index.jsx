@@ -1,18 +1,6 @@
 import { DownOutlined } from "@ant-design/icons";
-import {
-  Badge,
-  Dropdown,
-  Menu,
-  Space,
-  Table,
-  Popconfirm,
-  Spin,
-  Modal,
-} from "antd";
-import {
-  useDelOrderMutation,
-  useGetOrderQuery,
-} from "../../../store/api/orderApi";
+import { Menu, Table, Spin, Modal } from "antd";
+import { useGetOrderQuery } from "../../../store/api/orderApi";
 import React, { useEffect, useState } from "react";
 const menu = (
   <Menu
@@ -76,33 +64,6 @@ export default function Order() {
         dataIndex: "productTotalPrice",
         key: "productTotalPrice",
       },
-      // {
-      //   title: "Status",
-      //   key: "state",
-      //   render: () => (
-      //     <span>
-      //       <Badge status="success" />
-      //       Finished
-      //     </span>
-      //   ),
-      // },
-
-      // {
-      //   title: "Action",
-      //   dataIndex: "operation",
-      //   key: "operation",
-      //   render: () => (
-      //     <Space size="middle">
-      //       <a>Pause</a>
-      //       <a>Stop</a>
-      //       <Dropdown overlay={menu}>
-      //         <a>
-      //           More <DownOutlined />
-      //         </a>
-      //       </Dropdown>
-      //     </Space>
-      //   ),
-      // },
     ];
 
     const data = [];

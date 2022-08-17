@@ -187,7 +187,7 @@ function List() {
           pagination={{
             total: products.meta.total,
             defaultPageSize: 3,
-            current: pageNum,
+            current: pageNum || 1,
             onChange: loadData,
           }}
           rowClassName={(record) => (record.onSale ? "" : "bg-red")}

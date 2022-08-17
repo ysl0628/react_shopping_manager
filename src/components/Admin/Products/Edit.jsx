@@ -126,7 +126,7 @@ function Edit() {
   return (
     <Card
       title="商品編輯"
-      extra={<Button onClick={() => navigate("/admin/products")}>返回</Button>}
+      extra={<Button onClick={() => navigate(-1)}>返回</Button>}
     >
       <Form
         //添加 form 功能

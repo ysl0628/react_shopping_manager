@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Card, Table, Button, Popconfirm, Spin, Image } from "antd";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import {
   useDelProductMutation,
   useGetProductsQuery,
-  useGetProductByIdQuery,
   useUpdateProductMutation,
 } from "../../../../store/api/productsApi";
 import "./index.css";
@@ -13,9 +12,10 @@ import { serverUrl } from "../../../../utlis/config";
 function List() {
   const navigate = useNavigate();
   // 取得頁數總數
-  // const [totalPage, setTotalPage] = useState(0);
   // 取得一個 useSearchParams()，類似 useState
   const [query, setQuery] = useSearchParams();
+  const pageInfo = useLocation();
+  const pageNum = parseInt(pageInfo.search.slice(6));
   // 取得 page 變數
   const page = query.get("page") ?? "1";
   // 使用 useGetProductsQuery() 取得 Api 的商品
@@ -41,11 +41,11 @@ function List() {
       image: product.attributes?.image?.data?.attributes?.formats?.small?.url,
     }));
     setDataSource(data);
-    // setTotalPage(products.meta.total);
-  }, [isSuccess, products]);
+  }, [isSuccess, page, products]);
 
   // 用 setQuery 將點選的 page 頁碼放進 query // 刷新用
   const loadData = (currentPage) => {
+    console.log(currentPage);
     setQuery({ page: currentPage });
   };
 
@@ -187,6 +187,7 @@ function List() {
           pagination={{
             total: products.meta.total,
             defaultPageSize: 3,
+            current: pageNum,
             onChange: loadData,
           }}
           rowClassName={(record) => (record.onSale ? "" : "bg-red")}
